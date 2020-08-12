@@ -1,0 +1,30 @@
+function myFunction() { 
+ var folder = DriveApp.getFolderById("1TT-QRB-LJ8dgxgnsjAEFG4JR8kvewCO9"); // here give the id of folder which is present in drive
+  var fileiterator = folder.getFiles();
+  var file;
+   var fileType;
+  var ssID;
+  var combinedData=[];
+  var data;
+  while(fileiterator.hasNext())
+  {
+    file=fileiterator.next();
+    fileType=file.getMimeType();
+    if(fileType==="application/vnd.google-apps.spreadsheet")
+    {
+      ssID=file.getId();
+      data = getData(ssID);
+      combinedData = combinedData.concat(data);
+    }// if end here
+  }//while loop end here
+ var ws = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Output 1 -Curriculum  Video Link");//change the name according to tab importing data. 
+ ws.getRange(2, 1 , combinedData.length , combinedData[0].length).setValues(combinedData);// give range where to past the data.
+}
+function getData(ssID) {
+  var ss = SpreadsheetApp.openById(ssID);
+  var files=DriveApp.getFileById(ssID);
+  var name=files.getName();
+  var ws =ss.getSheetByName("Output 1 -Curriculum  Video Link");//change the name according to tab importing data.
+   var data = ws.getRange("A2:L" + ws.getLastRow()).getValues();// give range from where to where collect the data .
+  return data;  
+}
