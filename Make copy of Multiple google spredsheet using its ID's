@@ -1,0 +1,21 @@
+function myFunction() {
+  var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1q59g4K2LLBIpzDT2a244FM0RRAlZymHWXGzitb9WA/edit#gid=0");// Link of the sheet where all the ids of sheet is avaliable
+   var ws =ss.getSheets()[0];
+   var data = [];
+  var destFolder = DriveApp.getFolderById("16tindN8tcUm2oMUNulzDnoR1vIGcjf");// Id of the google drive folder where all the copy of the sheet to be pasted.
+  data = ws.getRange("A2:A258").getValues(); // Change A2:A3 starting end column of link in sheet
+  getfilecopy(data,destFolder);
+}
+function getfilecopy(data,destFolder){
+  var ids =[];
+  ids=data;
+  var move_file=[];
+ 
+  //Logger.log(id);
+  for(var i=0; i<ids.length; i++)
+  {
+  var file=DriveApp.getFileById(ids[i]);
+  var crtFile=file.getName();
+   move_file[i]=file.makeCopy(crtFile,destFolder);
+  } 
+}
