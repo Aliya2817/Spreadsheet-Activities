@@ -1,3 +1,2 @@
 # spreadsheet Activities
-Here is group of code for Doing Multiple activities in google sheet using google script.
-Each file in this file. having unique function to do a particular work. 
+This code can create copy of multiple spreadsheet using their id's (all ID's should be in one spreadsheet from where we can pick the ids) and paste it in a new google drive folder(we also need to give the drive ID of the folder in the code) .
