@@ -1,0 +1,21 @@
+function myFunction1()
+{
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ws=ss.getActiveSheet();
+  var data=[] ,sr, modres ;
+  var lk = myFunction2();
+  data=ss.getRange("B2:B49").getValues().join(",") ;// change the range accoring to channel id avaliable in your spreadsheet
+  //Logger.log(ss.getRange("B2:B4"));
+  var stats=YouTube.Channels.list('statistics,snippet',{id:data});
+  var count=stats.items.map(function(res){return [res.statistics.viewCount,res.statistics.videoCount,res.snippet.title,res.snippet.description, res.snippet.country];});
+  var dat=ws.getRange(2,3,count.length,count[0].length).setValues(count); // change the range according to sheet(where you want to put the data).
+  }
+function myFunction2()
+{
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ws=ss.getActiveSheet();
+  var data=ss.getRange("A2:A85").getValues().join(",") ;// give the range according to video id present in your sheet. 
+  var stats=YouTube.Search.list("snippet",{id:data});
+  var count=stats.items.map(function(res){return [res.snippet.channelId];});
+  ws.getRange(2,2,count.length,count[0].length).setValues(count);// change the range accoring to where you want to put the channel id in your sheet.
+}
