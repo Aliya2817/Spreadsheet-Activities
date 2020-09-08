@@ -1,0 +1,33 @@
+function myFunction() {
+  var folder = DriveApp.getFolderById("1TT-QRB-LJ8dgxgnsjAEFG4JR8kvewCO9");//give the id of the folder where sheets are avaliable.
+  var fileiterator = folder.getFiles();
+  var file;
+   var fileType;
+  var ssID;
+  var combinedData=[];
+  var data;
+  while(fileiterator.hasNext())
+  {
+    file=fileiterator.next();
+    fileType=file.getMimeType();
+    if(fileType==="application/vnd.google-apps.spreadsheet")
+    {
+      ssID=file.getId();
+      OpenFile(ssID);
+    }
+  }
+}
+
+function OpenFile(ssID) {
+  var ss = SpreadsheetApp.openById(ssID);
+  var files=DriveApp.getFileById(ssID);
+  var name=files.getName();
+  Logger.log(name);
+  var ws =ss.getSheetByName("Output 1 -Curriculum  Video Link");//change the name according to tab on which drop down u want.
+  var Ldf = ws.getRange("A1:A10");//give the range on which drop down you want
+  var sheet= SpreadsheetApp.getActiveSheet();
+  var Activesheet = sheet.getRange("A1:A"+sheet.getLastRow()).getValues();//change the range according the data present in your active sheet.
+  var rule=SpreadsheetApp.newDataValidation().requireValueInList(Activesheet).build();
+  Ldf.setDataValidation(rule);
+
+}
