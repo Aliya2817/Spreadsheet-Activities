@@ -12,5 +12,8 @@ This code can create copy of multiple spreadsheet using their id's (all ID's sho
 This function can scrap data from youtube channel and put it in your active spreadsheet. the only condition is there should be any video link of the channels in your spreadsheet.
 you can add more method to get more data i have used some of them like tittle(to know the name of channel), viewCount(total views of channel), videocount(total number of videos on the channel). Here you can find the code https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-3 
 
+# Drop Down 
+Using this code we can create drop down in Multiple google sheet but the condition is all the sheet should be in one folder of the google drive and the name of the every sheet !st tab(where we want to create drop down) should be the same . We need to give the drive ID , sheet name & range from where to where we want to create Drop down. Here You can fond the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-4 
+
 
 
