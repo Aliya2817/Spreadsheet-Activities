@@ -15,5 +15,9 @@ you can add more method to get more data i have used some of them like tittle(to
 # 4. Drop Down 
 Using this code we can create drop down in Multiple google sheet but the condition is all the sheet should be in one folder of the google drive and the name of the every sheet !st tab(where we want to create drop down) should be the same . We need to give the drive ID , sheet name & range from where to where we want to create Drop down. Here You can fond the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-4 
 
+# 5. Generate unique key
+This code get the data from the active sheet and concatenate it(for concatenation i have pick the data fro column one , column 3 and column 7 . you can change the data as per your need)  . after that it just encrypt the concatenated data and generate a unique key . so basically this code generate unique key using encryption.
+
+
 
 
