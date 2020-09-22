@@ -1,0 +1,57 @@
+function myFunction() {
+   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  var val= sheet.getRange("A2:G2" + sheet.getLastRow()).getValues();
+  var cipher=[];
+  var data1=[];
+  var data2=[];
+  var data=[];
+  var row=ss.getLastRow();
+  for(var i=0; i<row;  i++)
+  {
+    data2=val[i][0].concat(val[i][6]);
+    data=data2.concat(val[i][2]);
+     cipher[i]=Encrypt(data);
+  }
+  sheet.appendRow(cipher);
+  Logger.log(cipher);
+   Transpose();
+  
+ //sheet.getRange(5, 8).setValue(cipher[3]);
+  
+}
+   var b64_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+function Encrypt(data)
+{var o1, o2, o3, h1, h2, h3, h4, bits, r, i = 0, enc = "";
+    if (!data) { return data; }
+    do {
+      o1 = data[i++];
+      o2 = data[i++];
+      o3 = data[i++];
+      bits = o1 << 16 | o2 << 8 | o3;
+      h1 = bits >> 18 & 0x3f;
+      h2 = bits >> 12 & 0x3f;
+      h3 = bits >> 6 & 0x3f;
+      h4 = bits & 0x3f;
+      enc +=b64_table.charAt(h1) + b64_table.charAt(h2) + b64_table.charAt(h3) + b64_table.charAt(h4);
+    } while (i < data.length);
+    r = data.length % 3;
+    return (r ? enc.slice(0, r - 3) : enc) + "===".slice(r || 3);
+  //Logger.log(r ? enc.slice(0, r - 3) : enc) + "===".slice(r || 3);
+};
+ 
+function Transpose() {
+   ss  = SpreadsheetApp.getActiveSheet();
+  var range = ss.getRange("A68:ZZ");///change the range A/c to the Data came from appending data of cipher text
+   var row=ss.getLastRow();
+  var values = range.getValues();
+  range.clear();
+   ss.getRange(2,8,values[0].length,values.length)//give the range where to paste the data.
+    .setValues(Object.keys(values[0]).map ( function (columnNumber) {
+      return values.map( function (row) {
+        return row[columnNumber];
+      });
+    }));
+  
+}
