@@ -1,0 +1,44 @@
+function myFunction() {
+    var folder = DriveApp.getFolderById("1vpuJ8NVuys539Di-ydZ9wULvi2GrpL9k");//paste the drive id from where we pick file to search.
+  var fileiterator = folder.getFiles();
+  var file,fileid;
+  var fileName = [];
+  while(fileiterator.hasNext())
+  {
+   file=fileiterator.next();
+ var fileType=file.getMimeType();
+    if(fileType==="application/vnd.google-apps.document")//give the file mime type.
+    {
+    fileName = file.getName();
+    fileid=file.getId();
+    check(fileName,fileid);
+    }
+  } 
+}
+
+function check(fileName,fileid)
+{
+var folder = DriveApp.getFolderById("1W-dTF_AenvwLSJZYPpPueUfnKFpMhxEx");//paste the drive id from where we compare file to search.
+  var fileiterator = folder.getFiles();
+  var file,nfile;
+  var CfileName =[];
+  var ws = SpreadsheetApp.getActiveSpreadsheet();
+     var ws =ss.getSheets()[1];//give the spreadsheet index no where the ids and name of the file shoud be add.
+  while(fileiterator.hasNext())
+  {
+   file=fileiterator.next();
+  var fileType=file.getMimeType();
+    if(fileType==="application/vnd.google-apps.document")
+    {
+    CfileName = file.getName();
+    if(CfileName==fileName){
+    Logger.log(CfileName);
+    nfile=CfileName
+    }
+    }
+  }
+  if(nfile!=fileName)
+    {
+    ws.appendRow([fileName,fileid]);
+    }
+  }
