@@ -18,6 +18,9 @@ Using this code we can create drop down in Multiple google sheet but the conditi
 # 5. Generate Unique key
 This code get the data from the active sheet and concatenate it(for concatenation i have pick the data fro column one , column 3 and column 7 . you can change the data as per your need) . after that it just encrypt the concatenated data and generate a unique key . so basically this code generate unique key using encryption.
  Here You can find the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-5 
+ 
+ # 6. Search file from google drive folder
+ This code pick file from one folder and search into another folder. if file is not present in the folder the it write the name and id of the file in the sheet. this code search only docs type file as mime type is given u can change mime type and search different types of file in folder. Here You can find the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-6 
 
 
 
