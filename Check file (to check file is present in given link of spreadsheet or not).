@@ -1,0 +1,42 @@
+function myFunctionSpreadSheet() {
+  var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1UOwY4Wk8-2Ddinj78qUJCMa6tBO0oA0nUet9PpBvCzY/edit#gid=0 ");// Link of the sheet where all the ids of sheet is avaliable
+   var ws =ss.getSheets()[1];
+   var data = [];
+   data = ws.getRange("C700:C783").getValues();
+    for(var i=0; i<data.length; i++)
+    {
+    try{
+    var file=DriveApp.getFileById(data[i]);
+    var fileName=file.getName();
+    var fileid=file.getId();
+    check(fileName,fileid);}
+    catch (e){};
+    }
+  } 
+
+
+function check(fileName,fileid)
+{
+var folder = DriveApp.getFolderById("1W-dTF_AenvwLSJZYPpPueUfnKFpMhxEx");
+  var fileiterator = folder.getFiles();
+  var file,nfile;
+  var CfileName =[];
+  var ws = SpreadsheetApp.getActiveSpreadsheet();
+  while(fileiterator.hasNext())
+  {
+   file=fileiterator.next();
+  var fileType=file.getMimeType();
+    if(fileType==="application/vnd.google-apps.document")
+    {
+    CfileName = file.getName();
+    if(CfileName==fileName){
+    Logger.log(CfileName);
+    nfile=CfileName
+    }
+    }
+  }
+  if(nfile!=fileName)
+    {
+    ws.appendRow([fileName,fileid]);
+    }
+  }
