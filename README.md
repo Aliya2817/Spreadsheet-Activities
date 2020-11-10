@@ -23,6 +23,7 @@ This code get the data from the active sheet and concatenate it(for concatenatio
  This code pick file from one folder and search into another folder. if file is not present in the folder the it write the name and id of the file in the sheet. this code search only docs type file as mime type is given u can change mime type and search different types of file in folder. Here You can find the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-6 
  
  # 7. Create Check file (to check file is present in the folder of the  given ID's of spreadsheet or not).
+ This code takes ID's of links from the spreadsheet and check weather the file present in the given folder or not if present it will print the file name.
  
 
 
