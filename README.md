@@ -27,4 +27,3 @@ This code get the data from the active sheet and concatenate it(for concatenatio
  Here You can find the code  https://github.com/Aliya2817/Spreadsheet-Activities/tree/Aliya2817-patch-7 
 
 
-
